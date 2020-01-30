@@ -13,19 +13,6 @@ All the Front End is already done. You are required to create the `Back End` for
 
 ## Recomended steps to complete this assigment.
 
-### 1.- Create Files and Folder Structure:
--   Copy the contents of the `Develop` folder and paste it at the root level of your application folder.
--   Create a server.js at the root level of your application folder.
--   Create a "models" folder at the root level of your application folder. Inside this folder, create two files: index.js and workout.js.
--   Create a "routes" folder at the root level of your application folder. Inside this folder, create two files: htmlRoutes.js and apiRoutes.js.
-
-Your folder structure should look like this:
-<br>
-<br>
-<img src="./images/folderStructure.png" style="width:150px">
-
-### 2.- Run "npm i" to install all dependencies (npm packages).
-
 ### 3.- Run the "seeds" by runing "npm run seed" on your VS Code terminal (at the root level of your application folder).
 
 ### 4.- Work on your files:
