@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 // unless they help you fill it out more in the startup.
 const PORT = process.env.PORT || 3000;
 
-const WorkoutModel = require("./WorkoutModel.js");
+const db = require("./models");
 const app = express();
 
 app.use(logger("dev"));
@@ -18,11 +18,24 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness", { useNewUrlParser: true });
 
-//upon the submission of some text (a workout model with exercises),
-// the newly created model is stored in the "dbFitness" document.
+// (1) I'm creating a new workout (and calling it No. 1 Workout)
+db.WorkoutModel.create({ name: "No. 1 Workout" })
+// WorkoutModel above refers to the name of my module.exports in the model
+  .then(dbFitness => {
+    console.log(dbFitness);
+  })
+  .catch(({message}) => {
+    console.log(message);
+  });
 
+
+// (2) Route for creating an exercise (which by default needs to go into a workout)
 app.post("/submit", ({body}, res) => {
-  WorkoutModel.create(body)
+  db.ExerciseModel.create(body)
+  // ExerciseModel above refers to the name of my module.exports in the model
+    .then(({_id}) => db.WorkoutModel.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true }))
+    // exercises above refers to the attribute of the WorkoutModel model.
+
     .then(dbFitness => {
       res.json(dbFitness);
     })
@@ -31,12 +44,20 @@ app.post("/submit", ({body}, res) => {
     });
 });
 
-//view workouts (container).
+
+// (3) route for viewing workouts
+app.get("/workoutURL", (req, res) => {
+  db.WorkoutModel.find({})
+    .then(dbFitness => {
+      res.json(dbFitness);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
 //create workouts (container).
     //log multiple exercises IN a workout on a given day
-
-// add exercises (subclasses) to a NEW workout plan.
 
 // add exercises (subclasses) to a PREVIOUS workout plan.
 
