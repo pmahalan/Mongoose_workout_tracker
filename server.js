@@ -18,6 +18,19 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness", { useNewUrlParser: true });
 
+// html routes:
+// index.html ("/")
+// exercise.html ("/exercise")
+// stats.html ("/stats")
+
+// api routes:
+// get ("/api/workouts") -- to read all docs from the database
+// post ("/api/workouts") -- to create a workout doc
+// update ("/api/workouts/:id") -- to update (add) exercises to the workout document
+// get ("/api/workouts/range") -- to read the last 7 documents (workouts) from the collection to be displayed
+
+// *** api.js, under public, has the front-end code for all four of the above API routes. (you need to hammer out the server-side code.)
+
 // (1) I'm creating a new workout (and calling it No. 1 Workout)
 db.WorkoutModel.create({ name: "No. 1 Workout" })
 // WorkoutModel above refers to the name of my module.exports in the model

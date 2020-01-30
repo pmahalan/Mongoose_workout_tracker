@@ -14,6 +14,8 @@ const ExerciseSchema = new Schema({
     type: String,
     trim: true
   },
+  //cardio will be one of the types
+  //idk what other types are... intensity? resistance? weight?
 
    weight: {
     type: Number,
