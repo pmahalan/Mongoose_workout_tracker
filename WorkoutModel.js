@@ -3,31 +3,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
-  // CODE HERE
-  workout_name: {
+  name: {
     type: String,
-
+    unique: true
   },
-  // a required string; trimmed
-
-  type: {
-    type: String,
-  },
-
-weight: {
-    
-  },
-
-
-  sets: {
-
-  },
-
-reps: {},
-
-duration: {}
-
-//if the workout is cardio, they should also be able to track the distance traveled
+  exercises: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Exercise"
+    }
+  ]
 
 });
 

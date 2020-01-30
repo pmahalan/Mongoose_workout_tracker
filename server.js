@@ -18,6 +18,9 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness", { useNewUrlParser: true });
 
+//upon the submission of some text (a workout model with exercises),
+// the newly created model is stored in the "dbFitness" document.
+
 app.post("/submit", ({body}, res) => {
   WorkoutModel.create(body)
     .then(dbFitness => {
@@ -27,6 +30,18 @@ app.post("/submit", ({body}, res) => {
       res.json(err);
     });
 });
+
+//view workouts (container).
+
+//create workouts (container).
+    //log multiple exercises IN a workout on a given day
+
+// add exercises (subclasses) to a NEW workout plan.
+
+// add exercises (subclasses) to a PREVIOUS workout plan.
+
+
+
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
