@@ -1,30 +1,17 @@
-const db = require("../models");
+// const express = require("express").Router();
+// const app = express();
 
-module.exports = function (app) {
-//create the routs to hope the app's HTML pages!
+// // -       index.html ("/")
+// app.get('/', function (req, res, next) {
+//   res.sendFile(path.join(__dirname, "../Mongoose_workout_tracker/public/index.html"));
+// });
 
-// index.html ("/")
-    // should direct the index.html page 
+// // -       exercise.html ("/exersice")
+// app.get('/exercise', function (req, res, next) {
+//   res.sendFile(path.join(__dirname, "../Mongoose_workout_tracker/public/exercise.html"));
+// }); 
 
-
-// exercise.html ("/exercise")
-// stats.html ("/stats")
-
-
-// (3) route for viewing workouts
-app.get("/workoutURL", (req, res) => {
-  db.WorkoutModel.find({})
-    .then(dbFitness => {
-      res.json(dbFitness);
-      console.log("lalala testing", dbFitness)
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
-
-//create workouts (container).
-    //log multiple exercises IN a workout on a given day
-
-// add exercises (subclasses) to a PREVIOUS workout plan.
-}
+// // -       stats.html ("/stats")
+// app.get('/stats', function (req, res, next) {
+//   res.sendFile(path.join(__dirname, "../Mongoose_workout_tracker/public/stats.html"));
+// });

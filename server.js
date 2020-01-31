@@ -17,6 +17,14 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
+// API routes
+// app.use(require("./routes/apiRoutes.js"));
+
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}!`);
+});
+
+
 //___________________________
 
 // -        HTML ROUTES       -
@@ -54,13 +62,22 @@ app.get("/api/workouts", (req, res) => {
 });
 
 // -       post ("/api/workouts") - to Create a Workout Document. 
-
-// This doesn't seem to be working. I should seek help.
-
-// Shouldn't this particular route be connected to something on the front-end? I.e. input fields and a submit button???
 app.post("/api/workouts", ({body}, res) => {
+  console.log("body of request to api/workouts", body);
   db.WorkoutModel.create(body)
-    .then(({_id}) => db.WorkoutModel.findOneAndUpdate({}, { $push: { workouts: _id }}, { new: true }))
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+  })
+
+  //front end -- lines 13 thru 20 get request
+app.put("/api/workouts/:id", (req, res) => {
+  console.log("body of the PUT to 'api/workouts'", req.body);
+  console.log("Parameter of the PUT to 'api/workouts'", req.params.id);
+  db.WorkoutModel.update({ _id:req.params.id },{ $push: { exercises: req.body }})
     .then(data => {
       res.json(data);
     })
@@ -78,11 +95,7 @@ app.post("/api/workouts", ({body}, res) => {
 
 // -       get ("/api/workouts/range") - to Read the last 7 documents (Workouts) from the collection to be displayed in the "stats.html" page.
 //          for this we'll probably refer to the first API route I hammered out above, then just filter it down to 7...
+app.get({
 
-
-
-
-app.listen(PORT, () => {
-    console.log(`App running on port ${PORT}!`);
-  });
   
+})
