@@ -53,7 +53,7 @@ app.get('/stats', function (req, res, next) {
 // Objective: get ALL workouts from workout.db.
 // Matching code: lines 2-12 in "api.js"
 app.get("/api/workouts", (req, res) => {
-  db.WorkoutModel.find({})
+  db.WorkoutModel.find({  })
     .then(dbFitness => {
       res.json(dbFitness);
     })
@@ -91,7 +91,19 @@ app.post("/api/workouts", ({body}, res) => {
 
 // Objective: get last 7 Workouts to be displayed on "stats.html" page.
 // Matching code: lines 38-43 in "api.js"
-app.get({"/api/workouts/range"
+app.get("/api/workouts/range", (req, res) => {
 
-  
-})
+  db.WorkoutModel.find({})
+
+    .then(dbFitness => {
+      //console.log(dbFitness[0])
+      let range = dbFitness.slice(dbFitness.length-7);
+      res.json(range);
+      //console.log(res);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+// workout.length-7
