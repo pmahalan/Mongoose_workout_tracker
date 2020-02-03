@@ -50,7 +50,8 @@ app.get('/stats', function (req, res, next) {
 
 // To handle the HTTP requests from the client and return the information from the database to the client.
 
-// -       get ("/api/workouts") - to Read all documents from the database. (done!!!)
+// Objective: get ALL workouts from workout.db.
+// Matching code: lines 2-12 in "api.js"
 app.get("/api/workouts", (req, res) => {
   db.WorkoutModel.find({})
     .then(dbFitness => {
@@ -61,19 +62,8 @@ app.get("/api/workouts", (req, res) => {
     });
 });
 
-// -       post ("/api/workouts") - to Create a Workout Document. 
-app.post("/api/workouts", ({body}, res) => {
-  console.log("body of request to api/workouts", body);
-  db.WorkoutModel.create(body)
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-  })
-
-  //front end -- lines 13 thru 20 get request
+// Objective: To add exercises TO an existing workout.
+// front end -- lines 13 thru 24 in "api.js"
 app.put("/api/workouts/:id", (req, res) => {
   console.log("body of the PUT to 'api/workouts'", req.body);
   console.log("Parameter of the PUT to 'api/workouts'", req.params.id);
@@ -86,16 +76,22 @@ app.put("/api/workouts/:id", (req, res) => {
     });
   })
 
-// -       update ("/api/workouts/:id") - to update (add) exercises to the workout document.
-//          Just like adding books to the library. (Find the route that was responsible for that.)
-//          I DON'T KNOW HOW TO DO THIS, there were no update routes in any of the examples from day 1. 
-//          Maybe I should look at group project #2? I know we definitley used update there.
+// Objective: create a new Workout.
+// Matching code: lines 26-36 in "api.js"
+app.post("/api/workouts", ({body}, res) => {
+  console.log("body of request to api/workouts", body);
+  db.WorkoutModel.create(body)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+  })
 
-
-
-// -       get ("/api/workouts/range") - to Read the last 7 documents (Workouts) from the collection to be displayed in the "stats.html" page.
-//          for this we'll probably refer to the first API route I hammered out above, then just filter it down to 7...
-app.get({
+// Objective: get last 7 Workouts to be displayed on "stats.html" page.
+// Matching code: lines 38-43 in "api.js"
+app.get({"/api/workouts/range"
 
   
 })

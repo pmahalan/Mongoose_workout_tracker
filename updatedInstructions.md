@@ -66,9 +66,9 @@ All the Front End is already done. You are required to create the `Back End` for
 #### On the "apiRoutes.js" file write code to:
 -   Create routes to handle the HTTP requests from the client and return the information from the database to the client.
 -   You will need at least four api routes:
--       get ("/api/workouts") - to Read all documents from the database.
--       post ("/api/workouts") - to Create a Workout Document.
--       update ("/api/workouts/:id") - to update (add) exercises to the workout document.
+-       get ("/api/workouts") - to Read all documents from the database. (DONE)
+-       post ("/api/workouts") - to Create a Workout Document. (DONE)
+-       update ("/api/workouts/:id") - to update (add) exercises to the workout document. (DONE)
 -       get ("/api/workouts/range") - to Read the last 7 documents (Workouts) from the collection to be displayed in the "stats.html" page.
 
 *If you find it difficult to create the code for the API routes with Express and Mongoose, make sure to review the content of the routes folder and files from one of our activities from "Week 9 - Day 1"*
