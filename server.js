@@ -96,14 +96,12 @@ app.get("/api/workouts/range", (req, res) => {
   db.WorkoutModel.find({})
 
     .then(dbFitness => {
-      //console.log(dbFitness[0])
+
       let range = dbFitness.slice(dbFitness.length-7);
       res.json(range);
-      //console.log(res);
+
     })
     .catch(err => {
       res.json(err);
     });
 });
-
-// workout.length-7
