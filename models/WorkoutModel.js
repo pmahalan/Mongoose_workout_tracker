@@ -13,8 +13,6 @@ const WorkoutSchema = new Schema({
         type: String,
         trim: true
       },
-      //cardio will be one of the types
-      //idk what other types are... intensity? resistance? weight?
     
       name: {
         type: String,
@@ -49,10 +47,7 @@ const WorkoutSchema = new Schema({
       }
     }
   ]
-
-//if the workout is cardio, they should also be able to track the distance traveled
 });
 
 const WorkoutModel = mongoose.model("Workout", WorkoutSchema);
-
 module.exports = WorkoutModel;
