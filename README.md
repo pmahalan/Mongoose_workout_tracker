@@ -1,6 +1,9 @@
 # Mongoose_workout_tracker
 Homework #17 -- Mongo DB, Mongoose, Express
 
+## Heroku Deployed Application
+https://gentle-atoll-02332.herokuapp.com/
+
 ### GH Pages URL: https://pmahalan.github.io/Mongoose_workout_tracker/
 
 The purpose of this assignment was to create a full-stack web application which references a NoSQL database -- specifically, Mongo DB. I acheived this through the use of the node.js package "Mongoose". Through this web application, the documents stored in Mongo DB are varying workouts. Each workout consists of a date on which it takes place, as well as varying apsects of sub-exercises (i.e. duration, reps, sets, distance, type, and time spent). 
